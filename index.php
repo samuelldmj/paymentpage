@@ -1,3 +1,14 @@
+<?php require_once('config/dbconn.php'); ?>
+
+<?php
+
+$products = $conn->query('SELECT * FROM products');
+$products->execute();
+$allProducts = $products->fetchAll(PDO::FETCH_OBJ);
+
+
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -30,58 +41,23 @@
 
     <div class="container">
         <div class="row mt-5">
+            <?php foreach($allProducts as $product):?>
             <div class="col-lg-4 col-md-6 col-sm-10 offset-md-0 offset-sm-1">
                 <div class="card">
-                    <img height="213px" class="card-img-top" src="images/node.png">
+                    <img height="213px" class="card-img-top" src="images/<?php echo $product->images; ?>">
                     <div class="card-body">
-                        <h5 class="d-inline"><b>Node Basics</b> </h5>
+                        <h5 class="d-inline"><b><?php echo $product->title; ?></b> </h5> <br>
                         <h5 class="d-inline">
-                            <div class="text-muted d-inline">($10/item)</div>
+                            <div class="text-muted d-inline"> ($<?php echo $product->price; ?>/item)</div>
                         </h5>
-                        <p>Monotonectally enable customized
-                            growth strategies and 24/7 portals. functional opportunities. </p>
-                        <a href="#" class="btn btn-primary w-100 rounded my-2"> Pay Now <i
-                                class="fas fa-arrow-right"></i> </a>
-
-                    </div>
-                </div>
-            </div>
-            <br>
-            <div class="col-lg-4 col-md-6 col-sm-10 offset-md-0 offset-sm-1 mb-5">
-                <div class="card">
-                    <a href="http://localhost/bookstore/shopping/single.php"><img height="213px" class="card-img-top"
-                            src="images/django.png"></a>
-                    <div class="card-body">
-                        <h5 class="d-inline"><b>Django Basics</b> </h5>
-                        <h5 class="d-inline">
-                            <div class="text-muted d-inline">($20/item)</div>
-                        </h5>
-                        <p>Monotonectally enable customized
-                            growth strategies and 24/7 portals. functional opportunities. </p>
+                        <p><?php echo $product->description; ?> </p>
                         <a href="#" class="btn btn-primary w-100 rounded my-2"> Pay Now <i
                                 class="fas fa-arrow-right"></i> </a>
                     </div>
                 </div>
             </div>
-            <br>
-            <div class="col-lg-4 col-md-6 col-sm-10 offset-md-0 offset-sm-1">
-                <div class="card">
-                    <img height="213px" class="card-img-top" src="images/html5.jpg">
-                    <div class="card-body">
-                        <h5 class="d-inline"><b>Django Basics</b> </h5>
-                        <h5 class="d-inline">
-                            <div class="text-muted d-inline">($50/item)</div>
-                        </h5>
-                        <p>Monotonectally enable customized
-                            growth strategies and 24/7 portals. functional opportunities. </p>
-                        <a href="#" class="btn btn-primary w-100 rounded my-2"> Pay Now <i
-                                class="fas fa-arrow-right"></i> </a>
-                    </div>
-                </div>
-            </div>
-
+            <?php endforeach; ?>
         </div>
-
     </div>
 
     <footer class="bg-dark text-white text-center text-lg-start" style="margin-top: 40px">
@@ -150,7 +126,7 @@
         <!-- Copyright -->
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
             © 2023 Copyright:
-            <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+            <a class="text-white" href="https://mdbootstrap.com/">@Samuelldmj</a>
         </div>
         <!-- Copyright -->
     </footer>
