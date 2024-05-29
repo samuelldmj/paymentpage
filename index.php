@@ -51,7 +51,8 @@ $allProducts = $products->fetchAll(PDO::FETCH_OBJ);
                             <div class="text-muted d-inline"> ($<?php echo $product->price; ?>/item)</div>
                         </h5>
                         <p><?php echo $product->description; ?> </p>
-                        <a href="#" class="btn btn-primary w-100 rounded my-2"> Pay Now <i
+                        <a href="pay.php?id=<?php echo $product->id; ?>" class="btn btn-primary w-100 rounded my-2">
+                            Pay Now <i
                                 class="fas fa-arrow-right"></i> </a>
                     </div>
                 </div>
